@@ -23,31 +23,73 @@ void Snake::draw_sprite(Assets * assets, sf::RenderWindow * window){
     }
 }
 
-Snake::Snake()
+void Snake::set_direction(cDirection new_direction)
 {
-    set_random_coordinates();
+    // protection while changing direction
+    switch (new_direction) {
+    case DOWN:  if(direction != UP) direction = new_direction;     break;
+    case UP:    if(direction != DOWN) direction = new_direction;   break;
+    case LEFT:  if(direction != RIGHT) direction = new_direction;  break;
+    case RIGHT: if(direction != LEFT) direction = new_direction;   break;
+    }
 }
 
-void Snake::set_random_coordinates()
+Snake::Snake()
+    :direction(RIGHT) // initial direction
 {
-    // TODO: set random x
-    int random_x = 70; // random_no(0, WINDOW_WIDTH);
-    int random_y = random_no(10, WINDOW_WIDTH);
+    bodies.push_back(cBoundingBox()); // set default body
+    bodies.push_back(cBoundingBox());
+    bodies.push_back(cBoundingBox());
+    initialize_position();
+}
 
-    head = cBoundingBox(random_x, random_y, ENTITY_SIDE, ENTITY_SIDE);
+void Snake::move()
+{
+    size_t step_len = ENTITY_SIZE;
+    switch (direction) {
+        case DOWN:  head_next.y += step_len;  break;
+        case UP:    head_next.y -= step_len;  break;
+        case LEFT:  head_next.x -= step_len;  break;
+        case RIGHT: head_next.x += step_len;  break;
+    }
 
-    // increment random_x or y to one based on head direxction
-    auto body = cBoundingBox(random_x + 20, random_y, ENTITY_SIDE, ENTITY_SIDE);
-    bodies.push_back(body);
+    // now update parts backwardly
+    tail.copy_from(bodies.back());
 
-    // increment random_x or y to two based on head direxction
-    tail = cBoundingBox(random_x + 40, random_y, ENTITY_SIDE, ENTITY_SIDE);
+    for(size_t i = bodies.size(); i > 0 ; i--){
+        bodies[i].copy_from(bodies[i - 1]);
+    }
+
+    // set first body to head
+    bodies[0].copy_from(head);
+
+    // set head to head_next
+    head.copy_from(head_next);
+}
+
+void Snake::initialize_position()
+{
+    head = cBoundingBox(
+                100,
+                100,
+                ENTITY_SIZE,
+                ENTITY_SIZE);
+    head_next.copy_from(head);
+
+    // initialize body and tail position relative to head
+    int delta = ENTITY_SIZE;
+    for(size_t i = 0 ; i < bodies.size(); i++, delta += ENTITY_SIZE){
+        bodies[i].x = head.x - delta;
+        bodies[i].y = head.y;
+    }
+    tail.x = head.x - delta;
+    tail.y = head.y;
 }
 
 void Snake::reset()
 {
     // TODO: stop rendring
-    // set body to 1
+    // clear bodies
     bodies.erase(bodies.begin() + 1, bodies.end());
-    set_random_coordinates();
+    initialize_position();
 }

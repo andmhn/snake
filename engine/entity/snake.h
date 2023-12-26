@@ -4,15 +4,18 @@
 #include <vector>
 #include "component/cBoundingBox.h"
 #include "component/cDirection.h"
-#include "system/Asset.h"
+#include "component/Asset.h"
 
 class Snake
 {
+    cBoundingBox head_next;
+    cDirection direction;
 
-    void set_random_coordinates();
+    // set initial position of body and tail
+    void initialize_position();
 
-public:
-    // theae are storing position coordinates
+public:  
+    // these are storing position coordinates
     cBoundingBox head;
     cBoundingBox tail;
     std::vector<cBoundingBox> bodies;
@@ -26,7 +29,8 @@ public:
     void reset();
 
     // set the snake head direction
-    void move(cDirection);
+    void move();
+    void set_direction(cDirection);
 };
 
 #endif // SNAKE_H
