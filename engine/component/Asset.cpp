@@ -30,7 +30,7 @@ void Assets::load_sprites()
         sprite->setTexture(*texture);
         //
         //TODO: set length of sprites to 20
-        sprite->scale(2, 2);
+        sprite->scale(ENTITY_SCALE, ENTITY_SCALE);
 
         textures.push_back(texture);
         sprites[basename] = sprite;

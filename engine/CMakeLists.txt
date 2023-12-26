@@ -2,13 +2,12 @@ set(SOURCE_FILES
     run.cpp
     utils.h
     utils.cpp
-    system/Asset.h
-    system/Asset.cpp
+    component/Asset.h
+    component/Asset.cpp
     system/Physics.h
     system/Physics.cpp
     entity/snake.h
     entity/snake.cpp
-    
     component/cBoundingBox.h
     component/cBoundingBox.cpp
     component/cDirection.h

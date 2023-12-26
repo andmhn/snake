@@ -3,6 +3,6 @@
 int run();
 int main()
 {
-    run();
+    return run();
 }
 

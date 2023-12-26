@@ -3,7 +3,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "system/Asset.h"
+#include "component/Asset.h"
 #include "entity/snake.h"
 
 int run()
@@ -15,8 +15,12 @@ int run()
     // initialize snake entity
     auto snake =  Snake();
 
-    // initialize window
+    // initialize window and frame rate
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_WIDTH), "Screen", sf::Style::Close);
+    window.setFramerateLimit(FPS);
+
+    // start clock
+    sf::Clock clock;
 
     //run as long as the window is open
     while (window.isOpen()) {
@@ -27,27 +31,32 @@ int run()
             if (evnt.type == sf::Event::Closed)
                 window.close();
         }
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)){
-//            head->move(0.0f, -1.0f);
-//        }
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-//            head->move(-1.0f, 0.0f);
-//        }
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-//            head->move(0.0f, 1.0f);
-//        }
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-//            head->move(1.0f, 0.0f);
-//        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)){
+            snake.set_direction(UP);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
+            snake.set_direction(LEFT);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
+            snake.set_direction(DOWN);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+            snake.set_direction(RIGHT);
+        }
         window.clear();
 
         // draw the snake
         snake.draw_sprite(&assets, &window);
+
+        // move snake every half second
+        if(static_cast<unsigned int>(clock.getElapsedTime().asMilliseconds()) > 500)
+        {
+            snake.move();
+            clock.restart();
+        }
+
         window.display();
     }
-
-
-    // load Assets
     return 0;
 }
 
