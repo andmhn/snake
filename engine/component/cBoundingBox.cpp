@@ -8,3 +8,11 @@ cBoundingBox::cBoundingBox(int cx, int cy,  int cwidth,  int cheight)
     width  = cwidth;
     height = cheight;
 }
+
+void cBoundingBox::copy_from(cBoundingBox box)
+{
+    x = box.x;
+    y = box.y;
+    width = box.width;
+    height = box.height;
+}
