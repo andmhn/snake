@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "component/Asset.h"
+#include "component/cScore.h"
 #include "entity/snake.h"
 #include "entity/apple.h"
 
@@ -12,6 +13,8 @@ int run()
     // initialize assets
     Assets assets;
     assets.load_sprites();
+
+    auto score = cScore();
 
     // initialize snake entity
     auto snake =  Snake();
@@ -48,6 +51,8 @@ int run()
             snake.set_direction(RIGHT);
         }
         window.clear();
+
+        snake.update_score_if_collided(&apple, &score);
 
         // draw the snake
         snake.draw_sprite(&assets, &window);

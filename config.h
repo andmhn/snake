@@ -12,8 +12,8 @@
 #define ENTITY_SIZE (ENTITY_SIDE * ENTITY_SCALE)
 
 // number of grids
-#define GRID_X  25
-#define GRID_Y  20
+#define GRID_X  15
+#define GRID_Y  10
 
 #define WINDOW_WIDTH   (ENTITY_SIZE * GRID_X)
 #define WINDOW_HEIGHT  (ENTITY_SIZE * GRID_Y)

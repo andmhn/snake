@@ -18,7 +18,7 @@ public:
 
     cBoundingBox();
     cBoundingBox(int cx, int cy,  int cwidth,  int cheight);
-    void copy_from(cBoundingBox);
+    void set_from(cBoundingBox);
 };
 
 #endif // CBOUNDINGBOX_H
