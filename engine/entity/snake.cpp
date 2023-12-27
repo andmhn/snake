@@ -70,8 +70,8 @@ void Snake::move()
 void Snake::initialize_position()
 {
     head = cBoundingBox(
-                100,
-                100,
+                ENTITY_SIZE, // centre of box
+                ENTITY_SIZE,
                 ENTITY_SIZE,
                 ENTITY_SIZE);
     head_next.copy_from(head);
