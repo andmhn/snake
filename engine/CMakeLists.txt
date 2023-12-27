@@ -8,6 +8,8 @@ set(SOURCE_FILES
     system/Physics.cpp
     entity/snake.h
     entity/snake.cpp
+    entity/apple.h
+    entity/apple.cpp
     component/cBoundingBox.h
     component/cBoundingBox.cpp
     component/cDirection.h

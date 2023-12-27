@@ -5,6 +5,7 @@
 
 #include "component/Asset.h"
 #include "entity/snake.h"
+#include "entity/apple.h"
 
 int run()
 {
@@ -15,8 +16,11 @@ int run()
     // initialize snake entity
     auto snake =  Snake();
 
+    // initialize apple
+    auto apple = Apple(assets.get_sprites("apple"));
+
     // initialize window and frame rate
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_WIDTH), "Screen", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Screen", sf::Style::Close);
     window.setFramerateLimit(FPS);
 
     // start clock
@@ -47,6 +51,8 @@ int run()
 
         // draw the snake
         snake.draw_sprite(&assets, &window);
+
+        apple.draw(&window);
 
         // move snake every half second
         if(static_cast<unsigned int>(clock.getElapsedTime().asMilliseconds()) > 500)
