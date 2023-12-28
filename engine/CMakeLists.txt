@@ -10,6 +10,8 @@ set(SOURCE_FILES
     entity/snake.cpp
     entity/apple.h
     entity/apple.cpp
+    entity/border.h
+    entity/border.cpp
     component/cScore.h
     component/cScore.cpp
     component/cBoundingBox.h

@@ -7,6 +7,7 @@
 #include "component/cScore.h"
 #include "entity/snake.h"
 #include "entity/apple.h"
+#include "entity/border.h"
 
 int run()
 {
@@ -21,6 +22,8 @@ int run()
 
     // initialize apple
     auto apple = Apple(assets.get_sprites("apple"));
+
+    auto border = Border(assets.get_sprites("border"));
 
     // initialize window and frame rate
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Screen", sf::Style::Close);
@@ -58,6 +61,8 @@ int run()
         snake.draw_sprite(&assets, &window);
 
         apple.draw(&window);
+
+        border.draw(&window);
 
         // move snake every half second
         if(static_cast<unsigned int>(clock.getElapsedTime().asMilliseconds()) > 500)
