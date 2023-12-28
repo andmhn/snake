@@ -15,8 +15,8 @@
 #define GRID_X  15
 #define GRID_Y  10
 
-#define WINDOW_WIDTH   (ENTITY_SIZE * GRID_X)
-#define WINDOW_HEIGHT  (ENTITY_SIZE * GRID_Y)
+#define WINDOW_WIDTH   (ENTITY_SIZE * GRID_X + ENTITY_SIZE)
+#define WINDOW_HEIGHT  (ENTITY_SIZE * GRID_Y + ENTITY_SIZE)
 
 // basename of textures
 #endif // CONFIG_H

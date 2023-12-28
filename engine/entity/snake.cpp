@@ -28,11 +28,12 @@ void Snake::draw_sprite(Assets * assets, sf::RenderWindow * window){
 void Snake::set_direction(cDirection new_direction)
 {
     // protection while changing direction
-    switch (new_direction) {
-    case DOWN:  if(direction != UP) direction = new_direction;     break;
-    case UP:    if(direction != DOWN) direction = new_direction;   break;
-    case LEFT:  if(direction != RIGHT) direction = new_direction;  break;
-    case RIGHT: if(direction != LEFT) direction = new_direction;   break;
+    switch (new_direction)
+    {
+    case DOWN : if(direction != UP)    direction = new_direction; break;
+    case UP   : if(direction != DOWN)  direction = new_direction; break;
+    case RIGHT: if(direction != LEFT)  direction = new_direction; break;
+    case LEFT : if(direction != RIGHT) direction = new_direction; break;
     }
 }
 
@@ -44,6 +45,7 @@ Snake::Snake()
                 ENTITY_SIZE,
                 ENTITY_SIZE,
                 ENTITY_SIZE);
+
     head_next.set_from(head);
 
     auto body = cBoundingBox();
@@ -57,7 +59,8 @@ Snake::Snake()
 
 void Snake::set_head_next(){
     size_t step_len = ENTITY_SIZE;
-    switch (direction) {
+    switch (direction)
+    {
         case DOWN:  head_next.y += step_len;  break;
         case UP:    head_next.y -= step_len;  break;
         case LEFT:  head_next.x -= step_len;  break;
@@ -80,7 +83,8 @@ void Snake::move()
         tail.set_from(bodies.back());
 
     // now update parts backwardly
-    for(size_t i = bodies.size() - 1; i > 0 ; i--){
+    for(size_t i = bodies.size() - 1; i > 0 ; i--)
+    {
         bodies[i].set_from(bodies[i - 1]);
     }
 
