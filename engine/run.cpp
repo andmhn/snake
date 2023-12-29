@@ -8,6 +8,7 @@
 #include "entity/snake.h"
 #include "entity/apple.h"
 #include "entity/border.h"
+#include "../config.h"
 
 int run()
 {
@@ -65,9 +66,15 @@ int run()
         border.draw(&window);
 
         // move snake every half second
-        if(static_cast<unsigned int>(clock.getElapsedTime().asMilliseconds()) > 500)
+        if(static_cast<unsigned int>(clock.getElapsedTime().asMilliseconds()) > DELTA_TIME)
         {
             snake.move();
+            if(border.has_box_collided(&snake.head))
+            {
+                // TODO: display score and continue screen
+                snake.reset();
+            }
+
             clock.restart();
         }
 

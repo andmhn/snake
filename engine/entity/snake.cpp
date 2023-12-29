@@ -38,10 +38,15 @@ void Snake::set_direction(cDirection new_direction)
 }
 
 Snake::Snake()
-    :direction(RIGHT) // initial direction
 {
+    init();
+}
+
+void Snake::init()
+{
+    direction = RIGHT; // initial direction
     head = cBoundingBox(
-                ENTITY_SIZE, // centre of box
+                ENTITY_SIZE * 3, // 3rd grid
                 ENTITY_SIZE,
                 ENTITY_SIZE,
                 ENTITY_SIZE);
@@ -55,6 +60,7 @@ Snake::Snake()
 
     tail.x = head.x - (ENTITY_SIZE * 2);
     tail.y = head.y;
+
 }
 
 void Snake::set_head_next(){
@@ -99,16 +105,14 @@ void Snake::reset()
 {
     // TODO: stop rendring
     // clear bodies
-    // bodies.erase(bodies.begin() + 1, bodies.end());
-    Snake();
+    bodies.erase(bodies.begin(), bodies.end());
+
+    init();
 }
 
 void Snake::update_score_if_collided(Apple * apple, cScore * score)
 {
-    int deltax = abs(head.x - apple->box.x);
-    int deltay = abs(head.y - apple->box.y);
-    if((deltax * 2 < (head.width + apple->box.width)) &&
-       (deltay * 2 < (head.height + apple->box.height)))
+    if(DoBoxesIntersect(&apple->box, &head))
     {
         has_eaten = true;
         apple->spawn();

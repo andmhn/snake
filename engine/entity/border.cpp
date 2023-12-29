@@ -1,5 +1,6 @@
 #include "border.h"
 #include "../../config.h"
+#include "system/Physics.h"
 
 Border::Border(sf::Sprite *sprite)
     :border_sprite{sprite}
@@ -58,4 +59,16 @@ void Border::set_positions_vec()
         border.y = get_coordinate(i);
         border_positions.push_back(border);
     }
+}
+
+bool Border::has_box_collided(cBoundingBox * box)
+{
+    for(auto border : border_positions)
+    {
+        if(DoBoxesIntersect(&border, box))
+        {
+            return true;
+        }
+    }
+    return false;
 }

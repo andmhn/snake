@@ -14,6 +14,7 @@ class Snake
     cDirection direction;
     bool has_eaten = false;
 
+    void init();
     void set_head_next();
     // set initial position of body and tail
     void initialize_position();

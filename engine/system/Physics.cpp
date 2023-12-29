@@ -2,6 +2,7 @@
 
 bool DoBoxesIntersect(cBoundingBox * a, cBoundingBox * b) {
   int deltax = abs(a->x - b->x);
+  int deltay = abs(a->y - b->y);
   return (deltax * 2 < (a->width + b->width)) &&
-         (deltax * 2 < (a->height + b->height));
+         (deltay * 2 < (a->height + b->height));
 }

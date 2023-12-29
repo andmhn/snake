@@ -15,6 +15,7 @@ class Border
 public:
     Border(sf::Sprite *);
     void draw(sf::RenderWindow *);
+    bool has_box_collided(cBoundingBox *);
 };
 
 #endif // BORDER_H
