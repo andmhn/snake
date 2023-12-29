@@ -19,6 +19,7 @@ class Snake
     // set initial position of body and tail
     void initialize_position();
     void add_new_body();
+    bool has_touched_body();
 
 public:  
     // these are storing position coordinates

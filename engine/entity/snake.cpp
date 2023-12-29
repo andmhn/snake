@@ -77,6 +77,12 @@ void Snake::set_head_next(){
 void Snake::move()
 {
     set_head_next();
+
+    if(has_touched_body())
+    {
+        reset();
+        return;
+    }
     if(has_eaten)
     {
         auto new_body = cBoundingBox();
@@ -118,4 +124,16 @@ void Snake::update_score_if_collided(Apple * apple, cScore * score)
         apple->spawn();
         score->add_points();
     }
+}
+
+bool Snake::has_touched_body()
+{
+    for(auto body : bodies)
+    {
+        if(DoBoxesIntersect(&head_next, &body))
+            return true;
+    }
+    if(DoBoxesIntersect(&head_next, &tail))
+        return true;
+    return false;
 }
