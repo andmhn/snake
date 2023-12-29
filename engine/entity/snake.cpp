@@ -115,13 +115,23 @@ void Snake::reset()
 
     init();
 }
-
+#include <algorithm>
 void Snake::update_score_if_collided(Apple * apple, cScore * score)
 {
     if(DoBoxesIntersect(&apple->box, &head))
     {
         has_eaten = true;
         apple->spawn();
+
+        // do not spawn apple inside the snake body
+        while((head_next == apple->box) ||
+            (head == apple->box) ||
+            (tail == apple->box) ||
+             std::find(bodies.begin(), bodies.end(), apple->box) != bodies.end())
+        {
+            apple->spawn();
+        }
+
         score->add_points();
     }
 }

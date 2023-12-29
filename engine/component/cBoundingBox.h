@@ -19,6 +19,8 @@ public:
     cBoundingBox();
     cBoundingBox(int cx, int cy,  int cwidth,  int cheight);
     void set_from(cBoundingBox);
+
+    bool operator == (cBoundingBox);
 };
 
 #endif // CBOUNDINGBOX_H

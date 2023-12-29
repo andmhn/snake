@@ -16,3 +16,7 @@ void cBoundingBox::set_from(cBoundingBox box)
     width = box.width;
     height = box.height;
 }
+bool cBoundingBox::operator == (cBoundingBox box)
+{
+    return (x == box.x) && (y == box.y);
+}
