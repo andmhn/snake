@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <iterator>
+#include <algorithm>
 #include "system/Physics.h"
 
 void Snake::draw_sprite(Assets * assets, sf::RenderWindow * window){
@@ -115,7 +116,7 @@ void Snake::reset()
 
     init();
 }
-#include <algorithm>
+
 void Snake::update_score_if_collided(Apple * apple, cScore * score)
 {
     if(DoBoxesIntersect(&apple->box, &head))

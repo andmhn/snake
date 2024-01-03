@@ -1,5 +1,4 @@
 set(SOURCE_FILES
-    run.cpp
     utils.h
     utils.cpp
     component/Asset.h
@@ -18,6 +17,8 @@ set(SOURCE_FILES
     component/cBoundingBox.cpp
     component/cDirection.h
     component/WindowGrid.h
+    system/Event_Handler.h
+    InstanceManager.h
 
 )
 add_library(snake-engine ${SOURCE_FILES})
