@@ -37,6 +37,7 @@ public:
 
     // set the snake head direction
     void move();
+    cDirection get_direction(){return direction;}
     void set_direction(cDirection);
     void update_score_if_collided(Apple *, cScore *);
 };

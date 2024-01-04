@@ -22,7 +22,7 @@ public:
         :apple(assets->get_sprites("apple")),
          border(assets->get_sprites("border")),
          assets(assets)
-    {}
+    { apple.spawn();}
 
     void run(sf::RenderWindow *window, sf::Clock *clock)
     {
