@@ -33,3 +33,6 @@ target_link_libraries(${PROJECT_NAME} sfml-system)
 
 # copy assets folder
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
+# generate compile database file
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

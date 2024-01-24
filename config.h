@@ -18,6 +18,6 @@
 #define WINDOW_WIDTH   (ENTITY_SIZE * GRID_X + ENTITY_SIZE)
 #define WINDOW_HEIGHT  (ENTITY_SIZE * GRID_Y + ENTITY_SIZE)
 
-#define DELTA_TIME 99 // error on 100
+#define DELTA_TIME 200 // error on 100
 // basename of textures
 #endif // CONFIG_H

@@ -1,6 +1,6 @@
 #include "utils.h"
-#include <random>
 #include <iostream>
+#include <random>
 
 void die(std::string err)
 {
@@ -8,7 +8,8 @@ void die(std::string err)
     exit(EXIT_FAILURE);
 }
 
-int random_no(int start, int stop){
+int random_no(int start, int stop)
+{
     std::random_device dev;
     std::mt19937 rng(dev());
 
@@ -17,4 +18,3 @@ int random_no(int start, int stop){
 
     return dist6(rng);
 }
-

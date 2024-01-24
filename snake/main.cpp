@@ -1,6 +1,5 @@
-#include "InstanceManager.h"
 #include "../config.h"
-
+#include "InstanceManager.h"
 
 void play_ai(Snake *snake, Apple *apple);
 
@@ -21,9 +20,9 @@ int main()
     sf::Clock clock;
 
     // ai play flag
-    bool ai = true;
+    bool ai = false;
 
-    //run as long as the window is open
+    // run as long as the window is open
     while (window.isOpen())
     {
         // check window's closing event
@@ -35,11 +34,11 @@ int main()
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
         {
-            ai = ai ? false: true; // toogle ai
+            ai = !ai; // toogle ai
         }
         window.clear();
 
-        if(ai && static_cast<unsigned int>(clock.getElapsedTime().asMilliseconds()) > DELTA_TIME)
+        if (ai && static_cast<unsigned int>(clock.getElapsedTime().asMilliseconds()) > DELTA_TIME)
             play_ai(&instance.snake, &instance.apple);
 
         instance.run(&window, &clock);
@@ -48,4 +47,3 @@ int main()
     }
     return 0;
 }
-

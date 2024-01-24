@@ -3,15 +3,15 @@
 #include "system/Physics.h"
 
 Border::Border(sf::Sprite *sprite)
-    :border_sprite{sprite}
+    : border_sprite{sprite}
 {
     set_positions_vec();
 }
 
 void Border::draw(sf::RenderWindow *window)
 {
-    //border_sprite->setPosition(x, y);
-    for(auto border : border_positions)
+    // border_sprite->setPosition(x, y);
+    for (auto border : border_positions)
     {
         border_sprite->setPosition(border.x, border.y);
         border_sprite->setScale(ENTITY_SCALE, ENTITY_SCALE);
@@ -21,14 +21,15 @@ void Border::draw(sf::RenderWindow *window)
 
 int get_coordinate(int pos)
 {
-    if(!pos) return 0;
+    if (!pos)
+        return 0;
     return pos * ENTITY_SIZE;
 }
 
 void Border::set_positions_vec()
 {
     // set upper borders
-    for(int i = 0; i <= GRID_X; i++)
+    for (int i = 0; i <= GRID_X; i++)
     {
         auto border = cBoundingBox();
         border.x = get_coordinate(i);
@@ -36,7 +37,7 @@ void Border::set_positions_vec()
         border_positions.push_back(border);
     }
     // set lower borders
-    for(int i = 0; i <= GRID_X; i++)
+    for (int i = 0; i <= GRID_X; i++)
     {
         auto border = cBoundingBox();
         border.x = get_coordinate(i);
@@ -44,7 +45,7 @@ void Border::set_positions_vec()
         border_positions.push_back(border);
     }
     // set left borders
-    for(int i = 1; i < GRID_Y; i++)
+    for (int i = 1; i < GRID_Y; i++)
     {
         auto border = cBoundingBox();
         border.x = get_coordinate(0);
@@ -52,7 +53,7 @@ void Border::set_positions_vec()
         border_positions.push_back(border);
     }
     // set right borders
-    for(int i = 1; i < GRID_Y; i++)
+    for (int i = 1; i < GRID_Y; i++)
     {
         auto border = cBoundingBox();
         border.x = get_coordinate(GRID_X);
@@ -61,11 +62,11 @@ void Border::set_positions_vec()
     }
 }
 
-bool Border::has_box_collided(cBoundingBox * box)
+bool Border::has_box_collided(cBoundingBox *box)
 {
-    for(auto border : border_positions)
+    for (auto border : border_positions)
     {
-        if(DoBoxesIntersect(&border, box))
+        if (DoBoxesIntersect(&border, box))
         {
             return true;
         }
