@@ -31,11 +31,16 @@ int main()
         {
             if (evnt.type == sf::Event::Closed)
                 window.close();
+
+            if (evnt.type == sf::Event::KeyPressed)
+            {
+                if (evnt.key.code == sf::Keyboard::Key::Space)
+                {
+                    ai = !ai; // toogle ai
+                }
+            }
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
-        {
-            ai = !ai; // toogle ai
-        }
+
         window.clear();
 
         if (ai && static_cast<unsigned int>(clock.getElapsedTime().asMilliseconds()) > DELTA_TIME)
